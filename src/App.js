@@ -1,9 +1,11 @@
 import React from "react";
-import PublicInstitutionManager from "./containers/PublicInstitutionManager/PublicInstitutionManager";
-
+import SiteManager from "./containers/SiteManager/SiteManager";
+import { BrowserRouter } from 'react-router-dom';
 function App() {
   return (
-      <PublicInstitutionManager/>
+    <BrowserRouter>
+      <SiteManager/>
+    </BrowserRouter>
   );
 }
  
