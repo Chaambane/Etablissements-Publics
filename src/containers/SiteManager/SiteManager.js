@@ -5,6 +5,7 @@ import Accueil from './Accueil/Accueil';
 import Localisation from './Localisation/Localisation';
 import Contact from './Contact/Contact'
 import { Route, Switch} from 'react-router-dom';
+import Error from '../../components/Error404/Error404';
 
 class SiteManager extends Component {
     render() {
@@ -15,6 +16,7 @@ class SiteManager extends Component {
                     <Route path="/" exact component={Accueil}/>
                     <Route path="/localisation" exact component={Localisation}/>
                     <Route path="/contact" exact component={Contact}/>
+                    <Route path="*" exact component={Error}/>
                 </Switch>
             </Container>
         )
