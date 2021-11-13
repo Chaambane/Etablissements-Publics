@@ -9,7 +9,7 @@ const navbar = (props) => (
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto fw-bold fs-4">
-                <LinkContainer exact to="/"> {/**LinkContainer permet de ne pas avoir un rechargement lors des changements de liens avec bootstrap */}
+                <LinkContainer exact to="/">
                     <Nav.Link>Accueil</Nav.Link>                    
                 </LinkContainer>
             </Nav>
