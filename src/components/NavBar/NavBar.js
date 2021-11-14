@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 
 const navbar = (props) => (
-    <Navbar className="mt-2 rounded" expand="lg" bg="info" variant="light">
+    <Navbar className="rounded" expand="lg" bg="info" variant="light">
         <Navbar.Brand className="border border-4 rounded-pill fw-bold p-2">P-Orientales</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
