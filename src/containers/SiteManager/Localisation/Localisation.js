@@ -1,28 +1,22 @@
 import React, {Component} from 'react';
-import { Container,Button } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import TitleH1 from '../../../components/TitleH1/TitleH1';
+import LocalisationCard from './LocalisationCard/LocalisationCard';
 
 class Localisation extends Component {
     state= {
         dataInstitution: null,
-        institutionName: null,
-        loading: false
     }
 
-    componentDidMount = () => {
-        this.handleLoadingData("mairie");
-    }
-
+    //Load data
     handleLoadingData = (institution) => {
-        let institutionSelect;
-        if(institution === "mairie") institutionSelect = "mairie";
-        else institutionSelect = `${institution}`;
-
-        axios.get(`https://etablissements-publics.api.gouv.fr/v3/departements/66/${institutionSelect}`)
+        axios.get(`https://etablissements-publics.api.gouv.fr/v3/departements/66/${institution}`)
         .then(response => {
             console.log(response);
             const dataInstitution = response.data.features.map(item => {
                 return{
+                    id:item.properties.id,
                     nom: item.properties.nom,
                     tel: item.properties.telephone,
                     email: item.properties.email,
@@ -39,19 +33,20 @@ class Localisation extends Component {
 
             this.setState({
                 dataInstitution,
-                institutionName: institution
+                institutionName: institution,
             })
 
         })
         .catch(error => {
             console.log(error);
         })
-    }
+    };
     
 
     render() {
         return (
             <Container className="mt-2">
+                <TitleH1>Rechercher un établissements :</TitleH1>
                 <Button 
                     variant="secondary"
                     onClick={() => this.handleLoadingData("mairie")}
@@ -67,7 +62,18 @@ class Localisation extends Component {
                 <Button 
                     variant="secondary"
                     onClick={() => this.handleLoadingData("prefecture")}
-                >Préfecture</Button>{' '}
+                >Préfecture</Button>
+                <Row>
+                    {
+                        this.state.dataInstitution &&
+                        this.state.dataInstitution.map(institution => {
+                            return (
+                                <Col md={6} key={institution.id}>
+                                    <LocalisationCard {...institution}/>
+                                </Col>
+                        )})
+                    }
+                </Row>
             </Container>
         )
     };
